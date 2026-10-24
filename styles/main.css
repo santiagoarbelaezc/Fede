@@ -41,11 +41,8 @@
 /* ── Dark Theme Tokens ──────────────────────────────────────── */
 [data-theme="dark"],
 body.dark-mode {
-  --color-obsidian:      #ffffff;
-  --color-obsidian-80:   rgba(255,255,255,0.85);
-  --color-white:         #070709;
   --color-surface:       #111114;
-  --color-border:        rgba(255, 255, 255, 0.12);
+  --color-border:        rgba(255, 255, 255, 0.14);
   --color-border-hover:  rgba(255, 255, 255, 0.45);
   --color-text-primary:  #ffffff;
   --color-text-muted:    #a1a1aa;
@@ -338,14 +335,14 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .cta-title {
   font-size: 1.05rem;
   font-weight: 700;
-  color: var(--color-white);
+  color: #ffffff;
   letter-spacing: -0.02em;
   line-height: 1.2;
 }
 
 .cta-subtitle {
   font-size: 0.72rem;
-  color: rgba(255,255,255,0.55);
+  color: rgba(255, 255, 255, 0.65);
   margin-top: 2px;
 }
 
@@ -1198,6 +1195,66 @@ body.dark-mode .avatar-card {
   background: #121216;
   border-color: rgba(255, 255, 255, 0.12);
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65);
+}
+
+/* Dark Mode CTA Buttons (Instagram & Chelsea) */
+body.dark-mode .cta-card {
+  background: #131419 !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.65) !important;
+}
+
+body.dark-mode .cta-card:hover {
+  background: #191b22 !important;
+  border-color: rgba(255, 255, 255, 0.35) !important;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.8) !important;
+}
+
+body.dark-mode .cta-card .cta-title {
+  color: #ffffff !important;
+}
+
+body.dark-mode .cta-card .cta-subtitle {
+  color: rgba(255, 255, 255, 0.68) !important;
+}
+
+body.dark-mode .cta-card .cta-icon-wrap {
+  background: rgba(255, 255, 255, 0.12) !important;
+}
+
+body.dark-mode .cta-card .cta-arrow {
+  background: rgba(255, 255, 255, 0.14) !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .cta-card--chelsea {
+  background: linear-gradient(135deg, #07173b 0%, #032150 50%, #021430 100%) !important;
+  border: 1px solid rgba(96, 165, 250, 0.55) !important;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.7), 0 0 26px rgba(3, 70, 148, 0.35) !important;
+}
+
+body.dark-mode .cta-card--chelsea:hover {
+  background: linear-gradient(135deg, #0a2050 0%, #042a66 50%, #031b40 100%) !important;
+  border-color: rgba(147, 197, 253, 0.85) !important;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.85), 0 0 35px rgba(3, 70, 148, 0.55) !important;
+}
+
+body.dark-mode .cta-card--chelsea .cta-title {
+  color: #ffffff !important;
+}
+
+body.dark-mode .cta-card--chelsea .cta-subtitle {
+  color: #93c5fd !important;
+}
+
+body.dark-mode .cta-card--chelsea .cta-arrow {
+  background: rgba(59, 130, 246, 0.35) !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .cta-card--chelsea .cta-icon-chelsea {
+  background: #034694 !important;
+  box-shadow: 0 4px 14px rgba(3, 70, 148, 0.5);
 }
 
 body.dark-mode .gallery-label-line {
