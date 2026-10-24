@@ -134,6 +134,32 @@
     </div>
   </main>
 
+  <!-- Background Music Audio -->
+  <audio id="bg-music" src="./assets/music/The%20Weeknd%20-%20Blinding%20Lights%20(Official%20Audio)%20-%20TheWeekndVEVO.mp3" preload="auto" loop></audio>
+
+  <!-- Floating Music Widget -->
+  <button id="music-player-btn" class="music-player-btn" aria-label="Reproducir música" title="The Weeknd - Blinding Lights">
+    <div class="music-wave" aria-hidden="true">
+      <span class="music-wave-bar"></span>
+      <span class="music-wave-bar"></span>
+      <span class="music-wave-bar"></span>
+      <span class="music-wave-bar"></span>
+    </div>
+    <div class="music-text">
+      <span class="music-song">Blinding Lights</span>
+      <span class="music-artist">The Weeknd</span>
+    </div>
+    <span class="music-toggle-icon" aria-hidden="true">
+      <svg class="music-icon-play" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+        <polygon points="5 3 19 12 5 21 5 3"/>
+      </svg>
+      <svg class="music-icon-pause" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+        <rect x="6" y="4" width="4" height="16"/>
+        <rect x="14" y="4" width="4" height="16"/>
+      </svg>
+    </span>
+  </button>
+
   <!-- AOS -->
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 

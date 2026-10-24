@@ -223,11 +223,100 @@ class Lightbox {
   }
 }
 
+// ── Music Player ──────────────────────────────────────────────
+
+class MusicPlayer {
+  private audio: HTMLAudioElement | null;
+  private btn: HTMLElement | null;
+  private isPlaying = false;
+
+  constructor() {
+    this.audio = document.getElementById("bg-music") as HTMLAudioElement | null;
+    this.btn   = document.getElementById("music-player-btn");
+  }
+
+  init(): void {
+    if (!this.audio || !this.btn) return;
+
+    this.audio.volume = 0.55;
+
+    // Toggle button
+    this.btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      this.toggle();
+    });
+
+    // Attempt autoplay immediately
+    this.attemptPlay();
+
+    // Browser policy fallback: play on first user interaction anywhere
+    const unlockAutoplay = () => {
+      if (!this.isPlaying) {
+        this.attemptPlay();
+      }
+      window.removeEventListener("click", unlockAutoplay);
+      window.removeEventListener("touchstart", unlockAutoplay);
+      window.removeEventListener("keydown", unlockAutoplay);
+    };
+
+    window.addEventListener("click", unlockAutoplay, { once: true });
+    window.addEventListener("touchstart", unlockAutoplay, { once: true });
+    window.addEventListener("keydown", unlockAutoplay, { once: true });
+
+    this.audio.addEventListener("play", () => {
+      this.isPlaying = true;
+      this.updateUI();
+    });
+
+    this.audio.addEventListener("pause", () => {
+      this.isPlaying = false;
+      this.updateUI();
+    });
+  }
+
+  private attemptPlay(): void {
+    if (!this.audio) return;
+    const playPromise = this.audio.play();
+    if (playPromise !== undefined) {
+      playPromise
+        .then(() => {
+          this.isPlaying = true;
+          this.updateUI();
+        })
+        .catch(() => {
+          this.isPlaying = false;
+          this.updateUI();
+        });
+    }
+  }
+
+  private toggle(): void {
+    if (!this.audio) return;
+    if (this.isPlaying) {
+      this.audio.pause();
+    } else {
+      this.audio.play().catch(() => {});
+    }
+  }
+
+  private updateUI(): void {
+    if (!this.btn) return;
+    if (this.isPlaying) {
+      this.btn.classList.add("is-playing");
+      this.btn.setAttribute("aria-label", "Pausar música");
+    } else {
+      this.btn.classList.remove("is-playing");
+      this.btn.setAttribute("aria-label", "Reproducir música");
+    }
+  }
+}
+
 // ── Bootstrap ─────────────────────────────────────────────────
 
 function bootstrap(): void {
   new ProfileRenderer(profileConfig).render();
   new Lightbox().init();
+  new MusicPlayer().init();
   new CursorGlow().init();
   initScrollProgress();
   initLinkTracking();
