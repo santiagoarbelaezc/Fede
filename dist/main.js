@@ -241,8 +241,43 @@ class MusicPlayer {
         }
     }
 }
+// ── Theme Manager ─────────────────────────────────────────────
+class ThemeManager {
+    constructor() {
+        this.currentTheme = "light";
+        this.toggleBtn = document.getElementById("theme-toggle");
+    }
+    init() {
+        const savedTheme = localStorage.getItem("fede_theme");
+        if (savedTheme) {
+            this.currentTheme = savedTheme;
+        }
+        else if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+            this.currentTheme = "dark";
+        }
+        this.applyTheme(this.currentTheme);
+        this.toggleBtn?.addEventListener("click", () => {
+            this.currentTheme = this.currentTheme === "light" ? "dark" : "light";
+            this.applyTheme(this.currentTheme);
+            localStorage.setItem("fede_theme", this.currentTheme);
+        });
+    }
+    applyTheme(theme) {
+        if (theme === "dark") {
+            document.body.classList.add("dark-mode");
+            document.documentElement.setAttribute("data-theme", "dark");
+            this.toggleBtn?.setAttribute("aria-label", "Cambiar a modo claro");
+        }
+        else {
+            document.body.classList.remove("dark-mode");
+            document.documentElement.removeAttribute("data-theme");
+            this.toggleBtn?.setAttribute("aria-label", "Cambiar a modo oscuro");
+        }
+    }
+}
 // ── Bootstrap ─────────────────────────────────────────────────
 function bootstrap() {
+    new ThemeManager().init();
     new ProfileRenderer(profileConfig).render();
     new Lightbox().init();
     new MusicPlayer().init();
